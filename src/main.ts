@@ -153,10 +153,10 @@ audioLoader.load('Teddy Swims The Door.mp3', buffer => {
 })
 
 // Animate
-const clock = new THREE.Clock()
+// const clock = new THREE.Clock()
 
 const animate = () => {
-  const elapsedTime = clock.getElapsedTime()
+  // const elapsedTime = clock.getElapsedTime()
 
   // Update controls
   controls.update()
