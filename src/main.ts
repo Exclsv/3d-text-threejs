@@ -133,36 +133,36 @@ renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
 // ^ Audio
-// const listener = new THREE.AudioListener()
-// camera.add(listener)
+const listener = new THREE.AudioListener()
+camera.add(listener)
 
 // create a global audio source
-// const sound = new THREE.Audio(listener)
+const sound = new THREE.Audio(listener)
 
 // Create an AudioAnalyser
-// const analyser = new THREE.AudioAnalyser(sound, 32)
+const analyser = new THREE.AudioAnalyser(sound, 32)
 
 // load a sound and set it as the Audio object's buffer
-// const audioLoader = new THREE.AudioLoader()
-// audioLoader.load('Teddy Swims The Door.mp3', buffer => {
-//   sound.setBuffer(buffer)
-//   sound.setLoop(true)
-//   sound.setVolume(0.4)
-//   sound.autoplay = true
-//   sound.play()
-// })
+const audioLoader = new THREE.AudioLoader()
+audioLoader.load('Teddy Swims The Door.mp3', buffer => {
+  sound.setBuffer(buffer)
+  sound.setLoop(true)
+  sound.setVolume(0.4)
+  sound.autoplay = true
+  sound.play()
+})
 
 // Animate
-// const clock = new THREE.Clock()
+const clock = new THREE.Clock()
 
 const animate = () => {
-  // const elapsedTime = clock.getElapsedTime()
+  const elapsedTime = clock.getElapsedTime()
 
   // Update controls
   controls.update()
 
   // Get frequency data
-  // const frequencyData = analyser.getFrequencyData()
+  const frequencyData = analyser.getFrequencyData()
 
   // Animate donuts
   donutGroup.children.forEach((donut, index) => {
@@ -171,15 +171,15 @@ const animate = () => {
 
     // ^ Audio reactive donuts
     // Scale donuts based on frequency data and initial scale
-    // const frequencyIndex = index % frequencyData.length
-    // const scaleFactor = 1 + frequencyData[frequencyIndex] / 192 // Adjust divisor for desired effect
+    const frequencyIndex = index % frequencyData.length
+    const scaleFactor = 1 + frequencyData[frequencyIndex] / 192 // Adjust divisor for desired effect
 
-    // const initialScale = initialScales[index]
-    // donut.scale.set(
-    //   initialScale.x * scaleFactor,
-    //   initialScale.y * scaleFactor,
-    //   initialScale.z * scaleFactor
-    // )
+    const initialScale = initialScales[index]
+    donut.scale.set(
+      initialScale.x * scaleFactor,
+      initialScale.y * scaleFactor,
+      initialScale.z * scaleFactor
+    )
   })
 
   // Render
